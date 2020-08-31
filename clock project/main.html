@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Javascript Clock</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link type="text/css" rel="stylesheet" href ="style.css">
+    </head>
+    <body>
+        <div id="my"></div>
+        <div id="mysession"></div>
+        <div id="mood"></div>
+    </body>
+    <script type="text/javascript">
+      setInterval(showClock,1000);
+      function showClock(){
+        var time = new Date();
+        var hour = time.getHours();
+        var min = time.getMinutes();
+        var sec = time.getSeconds();
+        var session = "AM";
+        var mood = "Happy";
+
+        if(hour>0 && hour<6 && session =="AM"){
+            mood = "Sleepy";
+            document.getElementById("mood").style.backgroundImage = "url('https://daily.jstor.org/wp-content/uploads/2015/11/Sleepy_1050x700.jpg')";
+        }
+        if(hour>6 && hour<12 && session=="AM"){
+            mood = "Office Office";
+        }
+        if(hour>12 && hour<18 && session=="PM"){
+            mood = "Come Home";
+        }
+        if(hour>18 && hour<24 && session=="PM"){
+            mood = "Watch TV";
+        }
+
+        if(hour==0){
+            hour=12
+        }
+        if(hour>12){
+            hour=hour-12;
+            session = "PM";
+        }
+        if(hour<10){
+          hour = "0"+hour;
+        }
+        if(sec<10){
+          sec = "0" + sec;
+        }
+        if(min<10){
+          min = "0" + min;
+        }
+       
+
+        document.getElementById("my").innerHTML = hour + " : " + min + " : " + sec;
+        document.getElementById("mysession").innerHTML = session;
+        document.getElementById("mood").innerHTML = mood;
+      }
+      
+    </script>
+</html>
